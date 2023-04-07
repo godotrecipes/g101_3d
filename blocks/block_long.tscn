@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpaun2nyr0qsv"]
+
+[ext_resource type="PackedScene" uid="uid://chg178y4821aw" path="res://platformer_kit/blockLong.glb" id="1_devou"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mtfi0"]
+points = PackedVector3Array(0.632904, 0.769577, 0.916537, 0.591512, 0.841425, 0.999939, 0.499929, 0, 0.999939, 0.632904, 0.769577, -0.916759, 0.499929, 1, 0.999939, 0.499929, 0.841425, 1.09133, 0.591512, 0.841425, -1.00016, 0.416648, 0.769577, 1.13281, -0.500052, 0, 0.999939, 0.499929, 0, -1.00016, -0.500052, 1, 0.999939, 0.499929, 1, -1.00016, 0.499929, 0.841425, -1.09155, -0.416772, 0.769577, 1.13281, -0.500052, 0.841425, 1.09133, -0.591636, 0.841425, 0.999939, -0.633028, 0.769577, 0.916537, -0.500052, 0, -1.00016, 0.416648, 0.769577, -1.13303, -0.500052, 1, -1.00016, -0.591636, 0.841425, -1.00016, -0.633028, 0.769577, -0.916759, -0.500052, 0.841425, -1.09155, -0.416772, 0.769577, -1.13303)
+
+[node name="blockLong" instance=ExtResource("1_devou")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+shape = SubResource("ConvexPolygonShape3D_mtfi0")

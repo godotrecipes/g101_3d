@@ -1,0 +1,129 @@
+[gd_scene load_steps=15 format=3 uid="uid://swfhsnhrdj47"]
+
+[ext_resource type="Script" path="res://example_scene.gd" id="1_pyx5r"]
+[ext_resource type="PackedScene" uid="uid://gv3ufr10wlqg" path="res://blocks/block_large.tscn" id="2_4ns3q"]
+[ext_resource type="PackedScene" uid="uid://6gybntbdv0xu" path="res://blocks/block_slope_half.tscn" id="3_ktgom"]
+[ext_resource type="PackedScene" uid="uid://bpaun2nyr0qsv" path="res://blocks/block_long.tscn" id="4_srw5q"]
+[ext_resource type="PackedScene" uid="uid://boetgj8eyvtdy" path="res://blocks/block_cliff.tscn" id="5_kmd0n"]
+[ext_resource type="PackedScene" uid="uid://dkou66kracu57" path="res://blocks/block_cliff_corner.tscn" id="6_sxbs4"]
+[ext_resource type="PackedScene" uid="uid://dsjyc56cugguc" path="res://blocks/block_hexagon.tscn" id="7_rxnyl"]
+[ext_resource type="PackedScene" uid="uid://dkmfr5t1pk0xl" path="res://character.tscn" id="8_l23i2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_06ied"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_bec7f"]
+sky_material = SubResource("ProceduralSkyMaterial_06ied")
+
+[sub_resource type="Environment" id="Environment_uvkhn"]
+background_mode = 2
+sky = SubResource("Sky_bec7f")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1vhbc"]
+albedo_color = Color(0.375, 0.294513, 0.0570074, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lyt5i"]
+material = SubResource("StandardMaterial3D_1vhbc")
+size = Vector3(10, 0.1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ht80a"]
+size = Vector3(10, 0.1, 10)
+
+[node name="ExampleScene" type="Node3D"]
+script = ExtResource("1_pyx5r")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uvkhn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_lyt5i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_ht80a")
+
+[node name="Blocks" type="Node3D" parent="."]
+
+[node name="blockLarge" parent="Blocks" instance=ExtResource("2_4ns3q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="blockLarge2" parent="Blocks" instance=ExtResource("2_4ns3q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="blockLarge3" parent="Blocks" instance=ExtResource("2_4ns3q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="blockLarge4" parent="Blocks" instance=ExtResource("2_4ns3q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="blockLarge5" parent="Blocks" instance=ExtResource("2_4ns3q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+
+[node name="blockSlopeHalf" parent="Blocks" instance=ExtResource("3_ktgom")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 0.5, -0.5)
+
+[node name="blockSlopeHalf3" parent="Blocks" instance=ExtResource("3_ktgom")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0, -0.5)
+
+[node name="blockSlopeHalf5" parent="Blocks" instance=ExtResource("3_ktgom")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 3.5)
+
+[node name="blockSlopeHalf6" parent="Blocks" instance=ExtResource("3_ktgom")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 4.5)
+
+[node name="blockSlopeHalf4" parent="Blocks" instance=ExtResource("3_ktgom")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.5, 0, 0.5)
+
+[node name="blockSlopeHalf2" parent="Blocks" instance=ExtResource("3_ktgom")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, 0.5, 0.5)
+
+[node name="blockLong" parent="Blocks" instance=ExtResource("4_srw5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 6)
+
+[node name="blockCliff" parent="Blocks/blockLong" instance=ExtResource("5_kmd0n")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 0.5)
+
+[node name="blockCliff2" parent="Blocks/blockLong" instance=ExtResource("5_kmd0n")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1, 0, 1.5)
+
+[node name="blockCliffCorner" parent="Blocks/blockLong/blockCliff2" instance=ExtResource("6_sxbs4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, -4.76837e-07)
+
+[node name="blockCliff3" parent="Blocks/blockLong" instance=ExtResource("5_kmd0n")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0, 1.5)
+
+[node name="blockCliff4" parent="Blocks/blockLong" instance=ExtResource("5_kmd0n")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0, 0.5)
+
+[node name="blockCliffCorner" parent="Blocks/blockLong/blockCliff4" instance=ExtResource("6_sxbs4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="blockCliffCorner2" parent="Blocks/blockLong/blockCliff4" instance=ExtResource("6_sxbs4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 0, -1.19209e-07)
+
+[node name="blockCliffCorner3" parent="Blocks/blockLong/blockCliff4" instance=ExtResource("6_sxbs4")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2, 0, 2)
+
+[node name="blockLong" parent="Blocks/blockLong" instance=ExtResource("4_srw5q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="blockHexagon" parent="Blocks" instance=ExtResource("7_rxnyl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 7)
+
+[node name="blockHexagon2" parent="Blocks" instance=ExtResource("7_rxnyl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 7)
+
+[node name="blockHexagon3" parent="Blocks" instance=ExtResource("7_rxnyl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 7)
+
+[node name="Character" parent="." instance=ExtResource("8_l23i2")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -6, 0.5, 0)

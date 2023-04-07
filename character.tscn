@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://dkmfr5t1pk0xl"]
+
+[ext_resource type="Script" path="res://character.gd" id="1_57xni"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oma5w"]
+albedo_color = Color(0.352941, 0.678431, 1, 1)
+clearcoat_roughness = 1.0
+subsurf_scatter_strength = 0.71
+backlight = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pysu0"]
+material = SubResource("StandardMaterial3D_oma5w")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwloo"]
+albedo_color = Color(1, 0.235294, 0.301961, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jr3mn"]
+material = SubResource("StandardMaterial3D_rwloo")
+top_radius = 0.2
+bottom_radius = 0.001
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c31kv"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_rblj2"]
+material = SubResource("StandardMaterial3D_c31kv")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vvgjp"]
+
+[node name="Character" type="CharacterBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+script = ExtResource("1_57xni")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_pysu0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.415523, -0.5)
+mesh = SubResource("CylinderMesh_jr3mn")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.551, -0.439)
+mesh = SubResource("SphereMesh_rblj2")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.551, -0.439)
+mesh = SubResource("SphereMesh_rblj2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_vvgjp")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.963064, 0.269273, 0, -0.269273, 0.963064, 2.08165e-12, 1, 2.08165e-12)
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+current = true

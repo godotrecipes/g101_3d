@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct5mqtj6q1yyw"]
+
+[ext_resource type="PackedScene" uid="uid://b3xbcxqro7yov" path="res://platformer_kit/crate.glb" id="1_5fb1x"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1xw0c"]
+bounce = 0.4
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8jog7"]
+points = PackedVector3Array(0.25, 0.5, 0.25, 0.25, -8.72298e-32, 0.25, 0.25, 0.5, -0.25, -0.25, 0.5, 0.25, 0.25, -8.72298e-32, -0.25, -0.25, -8.72298e-32, 0.25, -0.25, 0.5, -0.25, -0.25, -8.72298e-32, -0.25)
+
+[node name="Crate" instance=ExtResource("1_5fb1x")]
+physics_material_override = SubResource("PhysicsMaterial_1xw0c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+shape = SubResource("ConvexPolygonShape3D_8jog7")
